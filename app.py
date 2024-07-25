@@ -30,9 +30,12 @@ def grade_response(response, expected_answer):
     similarity = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])
 
     score = similarity[0][0] * 100  # Score out of 100
-    feedback = "Your answer is {}% similar to the expected answer.".format(score)
+    score = round(score, 2)  # Round the score to 2 decimal places
+    feedback = "Your answer is {:.2f}% similar to the expected answer.".format(score)
 
     return {"score": score, "feedback": feedback}
+
+
 
 
 if __name__ == '__main__':

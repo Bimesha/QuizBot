@@ -43,7 +43,7 @@ input[type="submit"] {
     background-color: cornflowerblue;
     color: black;
     border: #333333;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 20px;
     letter-spacing: 5px;
@@ -51,7 +51,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #4cae4c;
+    background-color: midnightblue;
 }
 
 #result {
