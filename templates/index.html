@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>QuizBot</h1>
+    <form id="quiz-form">
+        <label for="expected_answer">Expected Answer</label><br>
+        <textarea id="expected_answer" name="expected_answer" rows="4" cols="50" placeholder="Enter the expected answer here..."></textarea><br><br>
+        <label for="response">Your Answer</label><br>
+        <textarea id="response" name="response" rows="4" cols="50" placeholder="Enter your answer here..."></textarea><br><br>
+        <input type="submit" value="SUBMIT">
+    </form>
+    <div id="result" class="hidden">
+        <h2>Result</h2>
+        <p id="score"></p>
+        <p id="feedback"></p>
+    </div>
+    <script>
+        document.getElementById('quiz-form').onsubmit = async function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch('/submit_quiz', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('score').innerText = `Score: ${result.score}`;
+            document.getElementById('feedback').innerText = result.feedback;
+            document.getElementById('result').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
