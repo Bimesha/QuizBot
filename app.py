@@ -35,8 +35,5 @@ def grade_response(response, expected_answer):
 
     return {"score": score, "feedback": feedback}
 
-
-
-
 if __name__ == '__main__':
     app.run(debug=True)
